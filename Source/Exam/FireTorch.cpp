@@ -2,6 +2,8 @@
 
 
 #include "FireTorch.h"
+
+#include "ExamCharacter.h"
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
 
@@ -37,11 +39,10 @@ void AFireTorch::Tick(float DeltaTime)
 
 void AFireTorch::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved,FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
 {
-	if (Other && !bIsActive)
+	if (Other->IsA(AExamCharacter::StaticClass()) && !bIsActive)
 	{
 		bIsActive = true;
 		TorchVFX->Activate();
-		//Call Event
 	}
 }
 

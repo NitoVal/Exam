@@ -36,7 +36,7 @@ void APlatformToggle::Tick(float DeltaTime)
 
 void APlatformToggle::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
 {
-	if (Other->IsA(AExamCharacter::StaticClass()))
+	if (Other)
 	{
 		bIsActive = !bIsActive;
 		ToggleMeshComponent->SetMaterial(0,bIsActive ? OnMaterial : OffMaterial);
