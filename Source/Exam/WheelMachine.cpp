@@ -5,6 +5,7 @@
 
 #include "ExamCharacter.h"
 #include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AWheelMachine::AWheelMachine()
@@ -93,6 +94,7 @@ void AWheelMachine::CheckResult(FString Result)
 {
 	if (Result == ButtonPressed)
 	{
-		
+		AExamCharacter* Player = Cast<AExamCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+		Player->Score++;
 	}
 }

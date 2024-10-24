@@ -37,11 +37,9 @@ class AExamCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* MoveAction;
 	
-	UPROPERTY(VisibleAnywhere, Category="Score")
-	int Score;
+
 public:
 	AExamCharacter();
-	
 
 protected:
 	virtual void BeginPlay();
@@ -51,7 +49,8 @@ public:
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
-
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly, Category="Score")
+	int Score;
 protected:
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
