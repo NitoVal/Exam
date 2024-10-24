@@ -75,7 +75,6 @@ FString AWheelMachine::SpinWheel()
 	float LiteralFloat = 90.f;
 	float Result = RandomInt * LiteralFloat;
 	FRotator NewRotation = FRotator(0, Result, 0);
-	WheelMeshComponent->SetRelativeRotation(FRotator::ZeroRotator);
 	WheelMeshComponent->AddLocalRotation(NewRotation);
 
 	if (RandomInt == 0 || RandomInt == 2)
@@ -94,6 +93,6 @@ void AWheelMachine::CheckResult(FString Result)
 {
 	if (Result == ButtonPressed)
 	{
-		GEngine->AddOnScreenDebugMessage(-1,1,FColor::Green, "Success");
+		
 	}
 }

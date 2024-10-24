@@ -37,8 +37,11 @@ class AExamCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* MoveAction;
 	
+	UPROPERTY(VisibleAnywhere, Category="Score")
+	int Score;
 public:
 	AExamCharacter();
+	
 
 protected:
 	virtual void BeginPlay();
@@ -63,5 +66,7 @@ public:
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
+
+
 };
 
