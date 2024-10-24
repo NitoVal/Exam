@@ -43,13 +43,14 @@ protected:
 	UFUNCTION()
 	void OnYellowButtonHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
-	int SpinWheel();
+	FString SpinWheel();
 	void StopWheel();
-	void CheckResult();
+	void CheckResult(FString Result);
 private:
 	float RotationSpeed;
 	float RotationDuration;
 	bool bIsSpinning;
-
+	FString ButtonPressed;
+	
 	FTimerHandle StopTimerHandle;
 };

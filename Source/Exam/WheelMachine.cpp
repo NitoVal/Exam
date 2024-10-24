@@ -53,6 +53,7 @@ void AWheelMachine::OnBlackButtonHit(UPrimitiveComponent* HitComponent, AActor* 
 	if (!bIsSpinning)
 	{
 		bIsSpinning = true;
+		ButtonPressed = "Black";
 		GetWorldTimerManager().SetTimer(StopTimerHandle, this, &AWheelMachine::StopWheel, 1.f, false);
 	}
 }
@@ -62,28 +63,36 @@ void AWheelMachine::OnYellowButtonHit(UPrimitiveComponent* HitComponent, AActor*
 	if (!bIsSpinning)
 	{
 		bIsSpinning = true;
+		ButtonPressed = "Yellow";
 		GetWorldTimerManager().SetTimer(StopTimerHandle, this, &AWheelMachine::StopWheel, 1.f, false);
 	}
 }
 
 
-int AWheelMachine::SpinWheel()
+FString AWheelMachine::SpinWheel()
 {
 	int RandomInt = FMath::RandRange(0, 3);
 	float LiteralFloat = 90.f;
 	float Result = RandomInt * LiteralFloat;
-	FRotator NewRotation = FRotator(0, Result, 90.f);
-	WheelMeshComponent->SetRelativeRotation(NewRotation);
+	FRotator NewRotation = FRotator(0, Result, 0);
+	WheelMeshComponent->AddLocalRotation(NewRotation);
+
+	if (RandomInt == 0 || RandomInt == 2)
+		return "Black";
 	
-	return RandomInt;
+	return "Yellow";
 }
 void AWheelMachine::StopWheel()
 {
 	bIsSpinning = false;
-	int result = SpinWheel();
+	FString result = SpinWheel();
+	CheckResult(result);
 }
 
-void AWheelMachine::CheckResult()
+void AWheelMachine::CheckResult(FString Result)
 {
-	
+	if (Result == ButtonPressed)
+	{
+		GEngine->AddOnScreenDebugMessage(-1,1,FColor::Green, "Success");
+	}
 }

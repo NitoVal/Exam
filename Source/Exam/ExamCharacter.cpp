@@ -40,7 +40,6 @@ AExamCharacter::AExamCharacter()
 
 void AExamCharacter::BeginPlay()
 {
-	// Call the base class  
 	Super::BeginPlay();
 }
 
