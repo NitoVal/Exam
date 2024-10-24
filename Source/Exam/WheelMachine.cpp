@@ -75,7 +75,7 @@ FString AWheelMachine::SpinWheel()
 	int RandomInt = FMath::RandRange(0, 3);
 	float LiteralFloat = 90.f;
 	float Result = RandomInt * LiteralFloat;
-	FRotator NewRotation = FRotator(0, Result, 0);
+	FRotator NewRotation = FRotator(90, Result, 0);
 	WheelMeshComponent->AddLocalRotation(NewRotation);
 
 	if (RandomInt == 0 || RandomInt == 2)
