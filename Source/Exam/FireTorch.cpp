@@ -2,6 +2,8 @@
 
 
 #include "FireTorch.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 
 // Sets default values
 AFireTorch::AFireTorch()
@@ -13,6 +15,10 @@ AFireTorch::AFireTorch()
 
 	TorchMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TorchMeshComponent"));
 	TorchMeshComponent->SetupAttachment(RootComponent);
+	
+	TorchVFX = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComponent"));
+	TorchVFX->SetupAttachment(RootComponent);
+	TorchVFX->SetAutoActivate(false);
 }
 
 // Called when the game starts or when spawned
@@ -34,7 +40,7 @@ void AFireTorch::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiv
 	if (Other && !bIsActive)
 	{
 		bIsActive = true;
-		//Activate VFX
+		TorchVFX->Activate();
 		//Call Event
 	}
 }

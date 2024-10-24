@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "FireTorch.generated.h"
 
+class UNiagaraComponent;
+
 UCLASS()
 class EXAM_API AFireTorch : public AActor
 {
@@ -19,13 +21,15 @@ public:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	UStaticMeshComponent* TorchMeshComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
+	UNiagaraComponent* TorchVFX;
+
+	bool bIsActive;
 protected:
 
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) override;
-	
-private:
-	bool bIsActive;
 };

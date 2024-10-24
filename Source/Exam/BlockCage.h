@@ -6,21 +6,26 @@
 #include "GameFramework/Actor.h"
 #include "BlockCage.generated.h"
 
+class AFireTorch;
+
 UCLASS()
 class EXAM_API ABlockCage : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	ABlockCage();
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
+	USceneComponent* DefaultSceneRoot;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
+	UStaticMeshComponent* BlockMeshComponent;
 
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Block")
+	TArray<AFireTorch*> Torches;
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+private:
+	int ActivatedTorch;
 };
